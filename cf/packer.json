@@ -1,0 +1,30 @@
+{
+    "variables": {
+      "name": "cp_board_test",
+      "source_ami": "ami-034fffcc6a0063961",
+      "region":"eu-central-1"
+    },
+    "builders": [{
+      "type": "amazon-ebs",
+      "ami_name": "{{user `name`}}",
+      "region": "{{user `region`}}",
+      "source_ami": "{{user `source_ami`}}",
+      "instance_type": "t2.micro",
+      "communicator": "ssh",
+      "ssh_username": "ec2-user",
+      "run_tags":{"Name":"packer-image"}
+    }],
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "./cp-board",
+            "destination": "/home/ec2-user/"
+        },
+        {
+            "type": "shell",
+            "inline":[
+                "ls -al /home/ec2-user"
+            ]
+        }
+    ]
+}

@@ -17,5 +17,9 @@ build_mac: ## build mac amd64 binary
 dep: ## Get the dependencies
 	@go get -v -d ./...
 
+build_cf:
+	pip install git+https://github.com/sbalnojan/tropo-mods/
+	python cf/build.py > cf/generated_cf.yml
+
 help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

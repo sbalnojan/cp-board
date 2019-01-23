@@ -17,7 +17,7 @@ build_mac: ## build mac amd64 binary
 dep: ## Get the dependencies
 	@go get -v -d ./...
 
-build_cf:
+build_cf: ## install tropo-mods, create CF
 	pip install git+https://github.com/sbalnojan/tropo-mods/
 	python cf/build.py > cf/generated_cf.yml
 

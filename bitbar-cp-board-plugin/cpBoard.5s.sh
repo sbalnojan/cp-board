@@ -55,19 +55,24 @@ while read -r line; do
    #echo $resp
    state=$( check_status "$resp" )
    new_res="$line-$state"
-   RESULT+=("$new_res")
    TOTAL_COUNT=$((TOTAL_COUNT+1))
 
    if [ "$state" == "Failed" ]; then
      FAIL_COUNT=$((FAIL_COUNT+1))
+     RESULT+=("$new_res | color=red")
    elif [ "$state" == "Running" ]; then
      RUNNING_COUNT=$((RUNNING_COUNT+1))
+     RESULT+=("$new_res | color=blue")
+   else
+     RESULT+=("$new_res | color=green")
    fi
 done< <(echo $response | jq -r keys | jq -r '.[]')
-echo "$TOTAL_COUNT = $((TOTAL_COUNT - RUNNING_COUNT - FAIL_COUNT )) // $RUNNING_COUNT // $FAIL_COUNT | color=green"
+echo "$TOTAL_COUNT pipes = $((TOTAL_COUNT - RUNNING_COUNT - FAIL_COUNT )) (d) // $RUNNING_COUNT (r) // $FAIL_COUNT  (f)"
 echo "---"
-for item in ${RESULT[*]}
+
+for ((i = 0; i < ${#RESULT[@]}; i++))
 do
-    echo $item
+    echo "${RESULT[$i]}"
 done
+
 #echo $response | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]"

@@ -14,7 +14,7 @@ account the service is running in.
 
 Here's a demo what this looks like if you use the BitBar Plugin:
 
-![cp-boardplugin](pic/bitbarPluginDemo.jpg "BitBar cp-board Demo")
+![cp-boardplugin](pics/bitbarPluginDemo.jpg "BitBar cp-board Demo")
 
 ## To Do
 

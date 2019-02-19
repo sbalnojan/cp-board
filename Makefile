@@ -22,7 +22,7 @@ build_cf: ## install tropo-mods, create CF
 	python cf/build.py > cf/generated_cf.yml
 
 run_local_bb:
-	@./bitbar-cp-board-plugin/cpBoard.sh dummyArg
+	@./bitbar-cp-board-plugin/cpBoard.5s.sh dummyArg
 
 help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

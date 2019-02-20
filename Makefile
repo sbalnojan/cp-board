@@ -21,6 +21,9 @@ build_cf: ## install tropo-mods, create CF
 	pip install git+https://github.com/sbalnojan/tropo-mods/
 	python cf/build.py > cf/generated_cf.yml
 
+build_ami: ## build ami with packer
+	@packer build  cf/packer.json
+
 run_local_bb:
 	@./bitbar-cp-board-plugin/cpBoard.5s.sh dummyArg
 

@@ -45,6 +45,7 @@ Resources:
   myinstance1:
     Properties:
       ImageId: ami-0a88c13273ccadefb
+      IamInstanceProfile: !Ref InstanceProfile1
       InstanceType: t2.micro
       KeyName: !Ref 'SshKeyName'
       SecurityGroups:
@@ -58,4 +59,3 @@ Resources:
           - - "#!/bin/bash -xe\n"
             - ./home/ec2-user/cp-board-linux-amd64-0.0.1 &
     Type: AWS::EC2::Instance
-    IamInstanceProfile: !Ref 'InstanceProfile1'

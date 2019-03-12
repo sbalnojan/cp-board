@@ -68,12 +68,12 @@ TOTAL_COUNT=0
 
 RESULT=()
 
-#response=$(curl $CPB_ENDPOINT)
-response='{"pipe1":{"stage1":"Failed","stage2":"Succeeded","source":"Succeeded"},"pipe2":{"stagea":"Running","source":"Failed"},"pipe3":{"stage1":"Succeeded","source":"Succeeded"},"pipe4":{"stagez":"Succeeded","dource":"Succeeded"},"pipe5":{"dummystage":"Succeeded","source":"Succeeded"}}'
+# response='{"pipe1":{"stage1":"Failed","stage2":"Succeeded","source":"Succeeded"},"pipe2":{"stagea":"Running","source":"Failed"},"pipe3":{"stage1":"Succeeded","source":"Succeeded"},"pipe4":{"stagez":"Succeeded","dource":"Succeeded"},"pipe5":{"dummystage":"Succeeded","source":"Succeeded"}}'
 for (( c=1; c<=$ENDPOINT_COUNT; c++ ))
 do
   eval final_val='$'CPB_ENDPOINT_"$c"
   RESULT+=("$final_val | color=grey")
+  response=$( curl -s $final_val )
   print_endpoint
 done
 
